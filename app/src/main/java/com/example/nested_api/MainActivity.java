@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.nested_api.adapter.AdapterC;
 import com.example.nested_api.model.ResultList;
+import com.example.nested_api.model.Results;
 import com.example.nested_api.service.GetApi;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     GetApi getApi;
     RecyclerView recyclerView;
-    List<ResultList> resultLists;
+    List<Results> resultLists;
     AdapterC adapterC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadData() {
-        Call<List<ResultList>> call = getApi.getModel();
-        call.enqueue(new Callback<List<ResultList>>() {
+        Call<ResultList> call = getApi.getModel();
+        call.enqueue(new Callback<ResultList>() {
             @Override
-            public void onResponse(Call<List<ResultList>> call, Response<List<ResultList>> response) {
+            public void onResponse(Call<ResultList> call, Response<ResultList> response) {
                 if (response.isSuccessful()) {
-                    List<ResultList> lists;
-                    lists = response.body();
+                    List<Results> lists;
+                    lists = (List<Results>) response.body().getResults();
                     resultLists = lists;
                     adapterC = new AdapterC(resultLists,MainActivity.this);
                     recyclerView.setAdapter(adapterC);
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<ResultList>> call, Throwable t) {
+            public void onFailure(Call<ResultList> call, Throwable t) {
 
             }
         });

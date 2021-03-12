@@ -12,15 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nested_api.R;
 import com.example.nested_api.model.ResultList;
+import com.example.nested_api.model.Results;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class AdapterC extends RecyclerView.Adapter<AdapterC.MYHolder> {
-    List<ResultList> lists;
+    List<Results> lists;
     Context context;
 
-    public AdapterC(List<ResultList> lists,Context context) {
+    public AdapterC(List<Results> lists,Context context) {
         this.lists = lists;
         this.context=context;
     }
@@ -37,9 +38,9 @@ public class AdapterC extends RecyclerView.Adapter<AdapterC.MYHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MYHolder holder, int position) {
-        holder.name.setText(lists.get(position).getResults().get(position).getName());
-        holder.episode.setText(lists.get(position).getResults().get(position).getEpisode());
-        Picasso.get().load(lists.get(position).getResults().get(position).getUrl()).into(holder.imageView);
+        holder.name.setText(lists.get(position).getName());
+        holder.episode.setText(lists.get(position).getEpisode());
+        Picasso.get().load("https://m.media-amazon.com/images/M/MV5BZjRjOTFkOTktZWUzMi00YzMyLThkMmYtMjEwNmQyNzliYTNmXkEyXkFqcGdeQXVyNzQ1ODk3MTQ@._V1_.jpg").into(holder.imageView);
     }
 
     @Override

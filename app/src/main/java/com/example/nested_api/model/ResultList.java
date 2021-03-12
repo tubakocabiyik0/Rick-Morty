@@ -3,7 +3,7 @@ package com.example.nested_api.model;
 import java.util.List;
 
 public class ResultList {
-    private List<Results> results;
+    private List<Results> results=null;
 
     public ResultList() {
     }

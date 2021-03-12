@@ -9,5 +9,5 @@ import retrofit2.http.GET;
 
 public interface GetApi {
     @GET("episode")
-    Call<List<ResultList>> getModel();
+    Call<ResultList> getModel();
 }
