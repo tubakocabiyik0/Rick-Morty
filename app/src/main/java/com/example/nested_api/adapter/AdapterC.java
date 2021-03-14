@@ -21,9 +21,10 @@ public class AdapterC extends RecyclerView.Adapter<AdapterC.MYHolder> {
     List<Results> lists;
     Context context;
 
-    public AdapterC(List<Results> lists,Context context) {
+    public AdapterC(List<Results> lists, Context context) {
         this.lists = lists;
-        this.context=context;
+        this.context = context;
+
     }
 
     @NonNull
@@ -53,12 +54,19 @@ public class AdapterC extends RecyclerView.Adapter<AdapterC.MYHolder> {
         TextView episode;
         TextView name;
 
+
         public MYHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             episode = itemView.findViewById(R.id.textView2);
             name = itemView.findViewById(R.id.textView);
 
+
         }
+
+
     }
+
+
+
 }

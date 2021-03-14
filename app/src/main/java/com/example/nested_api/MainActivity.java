@@ -1,10 +1,14 @@
 package com.example.nested_api;
 
+import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
 import android.widget.TextView;
 
@@ -16,6 +20,8 @@ import com.example.nested_api.service.GetApi;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -27,10 +33,17 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     List<Results> resultLists;
     AdapterC adapterC;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    CompositeDisposable compositeDisposable;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://rickandmortyapi.com/api/")
                 .addConverterFactory(GsonConverterFactory.create())//Use Gson
@@ -41,10 +54,18 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         resultLists = new ArrayList<>();
         loadData();
+
+
     }
 
     private void loadData() {
-        Call<ResultList> call = getApi.getModel();
+
+
+
+
+
+
+        /*Call<ResultList> call = getApi.getModel();
         call.enqueue(new Callback<ResultList>() {
             @Override
             public void onResponse(Call<ResultList> call, Response<ResultList> response) {
@@ -52,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     List<Results> lists;
                     lists = (List<Results>) response.body().getResults();
                     resultLists = lists;
-                    adapterC = new AdapterC(resultLists,MainActivity.this);
+                    adapterC = new AdapterC(resultLists, MainActivity.this);
                     recyclerView.setAdapter(adapterC);
                     adapterC.notifyDataSetChanged();
 
@@ -63,8 +84,10 @@ public class MainActivity extends AppCompatActivity {
             public void onFailure(Call<ResultList> call, Throwable t) {
 
             }
-        });
+        });*/
 
 
     }
+
+
 }
